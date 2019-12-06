@@ -1,6 +1,6 @@
 /**
  *  @file cstrm.c
- *  @version 0.0.0
+ *  @version 0.1.0-dev0
  *  @date Thu Nov  1 08:33:12 CDT 2018
  *  @copyright %COPYRIGHT%
  *  @brief FIXME
@@ -54,7 +54,7 @@ cstrm_new(void)
 const char *
 cstrm_version(void)
 {
-   return "0.0.0"; 
+   return "0.1.0-dev0"; 
 }
 
 

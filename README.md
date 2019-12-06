@@ -1,4 +1,4 @@
-# cstrm 0.0.0
+# cstrm 0.1.0-dev0
 
 *   A façade providing the functionality of `fgetc()` and `ungetc()` on top of a
     standard `FILE*` stream or character string.
