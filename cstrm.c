@@ -1,7 +1,7 @@
 /**
  *  @file cstrm.c
  *  @version 0.1.0-dev0
- *  @date Fri Dec  6 22:16:07 CST 2019
+ *  @date Sat Dec  7 13:37:44 CST 2019
  *  @copyright %COPYRIGHT%
  *  @brief FIXME
  *  @details FIXME
@@ -29,9 +29,6 @@ struct cstrm {
    FILE       *fp;
 };
 
-
-/*** cstrm_new() ***/
-
 struct cstrm *
 cstrm_new(void)
 {
@@ -48,17 +45,11 @@ cstrm_new(void)
    return tp;
 }
 
-
-/*** cstrm_version() ***/
-
 const char *
 cstrm_version(void)
 {
    return "0.1.0-dev0";
 }
-
-
-/*** cstrm_open() ***/
 
 int
 cstrm_open(struct cstrm *p, void *x, int is_str)
@@ -89,14 +80,10 @@ cstrm_open(struct cstrm *p, void *x, int is_str)
 
       else {                                     /* regular file */
          p->fp = fopen((const char *) x, "rb");
-
          return _IS_NULL(p->fp) ? 1 : 0;
       }
    }
 }
-
-
-/*** cstrm_close() ***/
 
 void
 cstrm_close(struct cstrm *p)
@@ -109,9 +96,6 @@ cstrm_close(struct cstrm *p)
 
    _FREE(p);
 }
-
-
-/*** cstrm_getc() ***/
 
 int
 cstrm_getc(struct cstrm *p)
@@ -127,9 +111,6 @@ cstrm_getc(struct cstrm *p)
    return c;
 }
 
-
-/*** cstrm_ungetc() ***/
-
 int
 cstrm_ungetc(struct cstrm *p, const int c)
 {
@@ -139,7 +120,6 @@ cstrm_ungetc(struct cstrm *p, const int c)
    else
       return ungetc(c, p->fp);
 }
-
 
 #undef _IS_NULL
 #undef _FREE

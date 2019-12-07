@@ -31,6 +31,33 @@ check:
 	  && ( t/a.out ); \
 	done 
 
+check-examples:
+	echo "--------------------"; \
+	echo "Checking ex/ex_stdin_1.c  ..."; \
+	( $(CC) -g $(CPPFLAGS) $(OTHER_INCLUDE) $(CFLAGS) $(GCC_SANITIZE_FLAGS) $(OTHER_SOURCE) \
+		-o ex/a.out ex/ex_stdin_1.c cstrm.c cbuf.c $(LDFLAGS) ) \
+		&& ( ex/a.out < README.md ); \
+	echo "Checking ex/ex_stdin_2.c  ..."; \
+	( $(CC) -g $(CPPFLAGS) $(OTHER_INCLUDE) $(CFLAGS) $(GCC_SANITIZE_FLAGS) $(OTHER_SOURCE) \
+		-o ex/a.out ex/ex_stdin_2.c cstrm.c cbuf.c $(LDFLAGS) ) \
+		&& ( ex/a.out < README.md ); \
+	echo "Checking ex/ex_file_1.c  ..."; \
+	( $(CC) -g $(CPPFLAGS) $(OTHER_INCLUDE) $(CFLAGS) $(GCC_SANITIZE_FLAGS) $(OTHER_SOURCE) \
+		-o ex/a.out ex/ex_file_1.c cstrm.c cbuf.c $(LDFLAGS) ) \
+		&& ( ex/a.out README.md ); \
+	echo "Checking ex/ex_file_2.c  ..."; \
+	( $(CC) -g $(CPPFLAGS) $(OTHER_INCLUDE) $(CFLAGS) $(GCC_SANITIZE_FLAGS) $(OTHER_SOURCE) \
+		-o ex/a.out ex/ex_file_2.c cstrm.c cbuf.c $(LDFLAGS) ) \
+		&& ( ex/a.out README.md ); \
+	echo "Checking ex/ex_string_1.c  ..."; \
+	( $(CC) -g $(CPPFLAGS) $(OTHER_INCLUDE) $(CFLAGS) $(GCC_SANITIZE_FLAGS) $(OTHER_SOURCE) \
+		-o ex/a.out ex/ex_string_1.c cstrm.c cbuf.c $(LDFLAGS) ) \
+		&& ( ex/a.out README.md ); \
+	echo "Checking ex/ex_string_2.c  ..."; \
+	( $(CC) -g $(CPPFLAGS) $(OTHER_INCLUDE) $(CFLAGS) $(GCC_SANITIZE_FLAGS) $(OTHER_SOURCE) \
+		-o ex/a.out ex/ex_string_2.c cstrm.c cbuf.c $(LDFLAGS) ) \
+		&& ( ex/a.out README.md ); \
+
 vcheck:
 	@for i in $(TESTS); \
 	do \
@@ -60,33 +87,6 @@ echeck:
 		-o t/a.out $$i.c cstrm.c cbuf.c $(LDFLAGS_EFENCE) ) \
 	  && ( LD_PRELOAD=libefence.so ./t/a.out ); \
 	done 
-
-check-examples:
-	echo "--------------------"; \
-	echo "Checking ex/ex_stdin_1.c  ..."; \
-	( $(CC) -g $(CPPFLAGS) $(OTHER_INCLUDE) $(CFLAGS) $(OTHER_SOURCE) \
-		-o ex/a.out ex/ex_stdin_1.c cstrm.c cbuf.c $(LDFLAGS) ) \
-		&& ( valgrind $(VALGRIND_FLAGS) ex/a.out < README.md ); \
-	echo "Checking ex/ex_stdin_2.c  ..."; \
-	( $(CC) -g $(CPPFLAGS) $(OTHER_INCLUDE) $(CFLAGS) $(OTHER_SOURCE) \
-		-o ex/a.out ex/ex_stdin_2.c cstrm.c cbuf.c $(LDFLAGS) ) \
-		&& ( valgrind $(VALGRIND_FLAGS) ex/a.out < README.md ); \
-	echo "Checking ex/ex_file_1.c  ..."; \
-	( $(CC) -g $(CPPFLAGS) $(OTHER_INCLUDE) $(CFLAGS) $(OTHER_SOURCE) \
-		-o ex/a.out ex/ex_file_1.c cstrm.c cbuf.c $(LDFLAGS) ) \
-		&& ( valgrind $(VALGRIND_FLAGS) ex/a.out README.md ); \
-	echo "Checking ex/ex_file_2.c  ..."; \
-	( $(CC) -g $(CPPFLAGS) $(OTHER_INCLUDE) $(CFLAGS) $(OTHER_SOURCE) \
-		-o ex/a.out ex/ex_file_2.c cstrm.c cbuf.c $(LDFLAGS) ) \
-		&& ( valgrind $(VALGRIND_FLAGS) ex/a.out README.md ); \
-	echo "Checking ex/ex_string_1.c  ..."; \
-	( $(CC) -g $(CPPFLAGS) $(OTHER_INCLUDE) $(CFLAGS) $(OTHER_SOURCE) \
-		-o ex/a.out ex/ex_string_1.c cstrm.c cbuf.c $(LDFLAGS) ) \
-		&& ( valgrind $(VALGRIND_FLAGS) ex/a.out README.md ); \
-	echo "Checking ex/ex_string_2.c  ..."; \
-	( $(CC) -g $(CPPFLAGS) $(OTHER_INCLUDE) $(CFLAGS) $(OTHER_SOURCE) \
-		-o ex/a.out ex/ex_string_2.c cstrm.c cbuf.c $(LDFLAGS) ) \
-		&& ( valgrind $(VALGRIND_FLAGS) ex/a.out README.md ); \
 
 indent: stamp
 	@indent $(INDENT_FLAGS) cstrm.c

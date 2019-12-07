@@ -1,7 +1,7 @@
 /**
  *  @file cstrm.h
  *  @version 0.1.0-dev0
- *  @date Fri Dec  6 22:16:08 CST 2019
+ *  @date Sat Dec  7 13:37:44 CST 2019
  *  @copyright %COPYRIGHT%
  *  @brief FIXME
  *  @details FIXME
@@ -18,17 +18,16 @@
 struct cstrm;
 
 /**
- *  @brief Create and return a new cstrm object.
+ *  @brief Constructor.
+ *  @details Create and return a new cstrm object.
  *  @details FIXME longer description here ...
  */
-
 struct cstrm *cstrm_new(void);
 
 /**
  *  @brief Return the version of this package.
  *  @details FIXME longer description here ...
  */
-
 const char *cstrm_version(void);
 
 /**
@@ -37,14 +36,12 @@ const char *cstrm_version(void);
  *  @param p Pointer to a cstrm object
  *  @param x FIXME
  */
-
 int         cstrm_open(struct cstrm *p, void *x, int is_str);
 
 /**
  *  @brief Clean up and free a cstrm structure.
  *  @details FIXME longer description here ...
  */
-
 void        cstrm_close(struct cstrm *p);
 
 /**
@@ -53,7 +50,6 @@ void        cstrm_close(struct cstrm *p);
  *  @param p Pointer to a cstrm object
  *  @param x FIXME
  */
-
 int         cstrm_getc(struct cstrm *p);
 
 /**
@@ -62,8 +58,6 @@ int         cstrm_getc(struct cstrm *p);
  *  @param p Pointer to a cstrm object
  *  @param x FIXME
  */
-
 int         cstrm_ungetc(struct cstrm *p, const int c);
-
 
 #endif
