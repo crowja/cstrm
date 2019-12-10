@@ -86,15 +86,16 @@ cstrm_open(struct cstrm *p, void *x, int is_str)
 }
 
 void
-cstrm_close(struct cstrm *p)
+cstrm_close(struct cstrm **pp)
 {
-   if (p->is_str)
-      cbuf_free(p->cp);
+   if ((*pp)->is_str)
+      cbuf_free(&((*pp)->cp));
 
    else
-      _IS_NULL(p->fp) || fclose(p->fp);
+      _IS_NULL((*pp)->fp) || fclose((*pp)->fp);
 
-   _FREE(p);
+   _FREE(*pp);
+   *pp = NULL;
 }
 
 int

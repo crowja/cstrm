@@ -42,7 +42,7 @@ int         cstrm_open(struct cstrm *p, void *x, int is_str);
  *  @brief Clean up and free a cstrm structure.
  *  @details FIXME longer description here ...
  */
-void        cstrm_close(struct cstrm *p);
+void        cstrm_close(struct cstrm **pp);
 
 /**
  *  @brief Initialize a cstrm object.
