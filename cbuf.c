@@ -1,7 +1,7 @@
 /**
  *  @file cbuf.c
- *  @version 0.1.0-dev0
- *  @date %TODAY%
+ *  @version 0.1.3-dev0
+ *  @date Tue Dec 10 10:16:11 CST 2019
  *  @copyright %COPYRIGHT%
  *  @brief FIXME
  *  @details FIXME
@@ -27,8 +27,6 @@ struct cbuf {
    unsigned    pos;
 };
 
-/*** cbuf_new() ***/
-
 struct cbuf *
 cbuf_new(void)
 {
@@ -44,24 +42,19 @@ cbuf_new(void)
    return tp;
 }
 
-/*** cbuf_free() ***/
-
 void
-cbuf_free(struct cbuf *p)
+cbuf_free(struct cbuf **pp)
 {
-   _FREE(p->x);
-   _FREE(p);
+   _FREE((*pp)->x);
+   _FREE((*pp));
+   *pp = NULL;
 }
-
-/*** cbuf_version() ***/
 
 const char *
 cbuf_version(void)
 {
-   return "0.1.0-dev0";
+   return "0.1.3-dev0";
 }
-
-/*** cbuf_init() ***/
 
 int
 cbuf_init(struct cbuf *p, const char *str)
@@ -84,8 +77,6 @@ cbuf_init(struct cbuf *p, const char *str)
       return 0;
 }
 
-/*** cbuf_get() ***/
-
 int
 cbuf_get(struct cbuf *p)
 {
@@ -99,10 +90,8 @@ cbuf_get(struct cbuf *p)
 
 }
 
-/*** cbuf_unget() ***/
-
 int
-cbuf_unget(struct cbuf *p, char c)
+cbuf_unget(struct cbuf *p, const char c)
 {
    if (_IS_NULL(p->x))                           /* TODO combine these checks later */
       return EOF;
