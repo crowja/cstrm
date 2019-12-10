@@ -16,7 +16,7 @@ char        str[] =
  "MARCELLUS. It is offended.\n" "BARNARDO. See, it stalks away.\n";
 
 int
-main(int argc, char *argv[])
+main(void)
 {
    struct cstrm *in;
    int         c;
@@ -34,7 +34,7 @@ main(int argc, char *argv[])
       else
          printf("%c", c);
 
-   cstrm_close(in);
+   cstrm_close(&in);
 
    return 0;
 }

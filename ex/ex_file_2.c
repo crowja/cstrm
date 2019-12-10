@@ -21,7 +21,7 @@ main(int argc, char *argv[])
       printf("%c", c);
    }
 
-   cstrm_close(in);
+   cstrm_close(&in);
 
    return 0;
 }

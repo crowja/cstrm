@@ -47,12 +47,13 @@ test_open_close(void)
 {
    struct cstrm *z;
 
-   _printf_test_name("test_open_close()", NULL);
+   _printf_test_name("test_open_close", NULL);
 
    z = cstrm_new();
    ASSERT("OPEN-CLOSE TEST", z);
    cstrm_open(z, NULL, 0);
-   cstrm_close(z);
+   cstrm_close(&z);
+   ASSERT_EQUALS(NULL, z);
 }
 
 

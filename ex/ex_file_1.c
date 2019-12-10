@@ -17,7 +17,7 @@ main(int argc, char *argv[])
    while (EOF != (c = cstrm_getc(in)))
       printf("%c", c);
 
-   cstrm_close(in);
+   cstrm_close(&in);
 
    return 0;
 }

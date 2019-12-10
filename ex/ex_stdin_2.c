@@ -5,7 +5,7 @@
 /* Read stdin, replace 'a' with 'A' */
 
 int
-main(int argc, char *argv[])
+main(void)
 {
    struct cstrm *in;
    int         c;
@@ -20,7 +20,7 @@ main(int argc, char *argv[])
          printf("%c", c);
    }
 
-   cstrm_close(in);
+   cstrm_close(&in);
 
    return 0;
 }
