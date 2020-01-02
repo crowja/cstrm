@@ -1,15 +1,14 @@
 /**
  *  @file cstrm.c
  *  @version 0.2.0-dev0
- *  @date Sat Dec  7 13:37:44 CST 2019
- *  @copyright %COPYRIGHT%
- *  @brief FIXME
- *  @details FIXME
+ *  @date Wed Jan  1 21:31:11 CST 2020
+ *  @copyright 2020 John A. Crow <crowja@gmail.com>
+ *  @license Unlicense <http://unlicense.org/>
  */
 
 #include <stdlib.h>
-#include <stdio.h>                               /* FIXME */
-#include <string.h>                              /* FIXME */
+#include <stdio.h>
+#include <string.h>
 #include "cstrm.h"
 #include "cbuf.h"
 
