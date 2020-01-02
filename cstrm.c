@@ -1,6 +1,6 @@
 /**
  *  @file cstrm.c
- *  @version 0.2.0-dev0
+ *  @version 0.3.0-dev0
  *  @date Wed Jan  1 21:31:11 CST 2020
  *  @copyright 2020 John A. Crow <crowja@gmail.com>
  *  @license Unlicense <http://unlicense.org/>
@@ -47,7 +47,7 @@ cstrm_new(void)
 const char *
 cstrm_version(void)
 {
-   return "0.2.0-dev0";
+   return "0.3.0-dev0";
 }
 
 int
