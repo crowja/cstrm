@@ -1,18 +1,13 @@
 /**
  *  @file cstrm.h
  *  @version 0.3.0-dev0
- *  @date Wed Jan  1 21:31:11 CST 2020
- *  @copyright 2020 John A. Crow <crowja@gmail.com>
+ *  @date Sun Feb 16, 2020 04:14:32 PM CST
+ *  @copyright 2019-2020 John A. Crow <crowja@gmail.com>
  *  @license Unlicense <http://unlicense.org/>
  */
 
-#ifndef _CSTRM_H_
-#define _CSTRM_H_
-
-#ifdef  _PACKAGE_NAME
-#undef  _PACKAGE_NAME
-#endif
-#define _PACKAGE_NAME "cstrm"
+#ifndef CSTRM_H
+#define CSTRM_H
 
 struct cstrm;
 

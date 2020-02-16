@@ -1,8 +1,8 @@
 /**
  *  @file cstrm.c
  *  @version 0.3.0-dev0
- *  @date Wed Jan  1 21:31:11 CST 2020
- *  @copyright 2020 John A. Crow <crowja@gmail.com>
+ *  @date Sun Feb 16, 2020 04:14:32 PM CST
+ *  @copyright 2019-2020 John A. Crow <crowja@gmail.com>
  *  @license Unlicense <http://unlicense.org/>
  */
 
@@ -12,15 +12,15 @@
 #include "cstrm.h"
 #include "cbuf.h"
 
-#ifdef  _IS_NULL
-#undef  _IS_NULL
+#ifdef  IS_NULL
+#undef  IS_NULL
 #endif
-#define _IS_NULL(p)   ((NULL == (p)) ? (1) : (0))
+#define IS_NULL(p)   ((NULL == (p)) ? (1) : (0))
 
-#ifdef  _FREE
-#undef  _FREE
+#ifdef  FREE
+#undef  FREE
 #endif
-#define _FREE(p)      ((NULL == (p)) ? (0) : (free((p)), (p) = NULL))
+#define FREE(p)      ((NULL == (p)) ? (0) : (free((p)), (p) = NULL))
 
 struct cstrm {
    int         is_str;
@@ -34,7 +34,7 @@ cstrm_new(void)
    struct cstrm *tp;
 
    tp = (struct cstrm *) malloc(sizeof(struct cstrm));
-   if (_IS_NULL(tp))
+   if (IS_NULL(tp))
       return NULL;
 
    tp->is_str = 0;
@@ -57,7 +57,7 @@ cstrm_open(struct cstrm *p, void *x, int is_str)
 
    if (is_str) {                                 /* reading from a string */
       p->is_str = 1;
-      if (_IS_NULL(x)) {                         /* "string" is actually a NULL pt */
+      if (IS_NULL(x)) {                          /* "string" is actually a NULL pt */
          p->cp = cbuf_new();
          cbuf_init(p->cp, (char *) x);
       }
@@ -72,14 +72,14 @@ cstrm_open(struct cstrm *p, void *x, int is_str)
 
    else {
       p->is_str = 0;
-      if (_IS_NULL(x)) {                         /* use stdin */
+      if (IS_NULL(x)) {                          /* use stdin */
          p->fp = stdin;
-         return _IS_NULL(p->fp) ? 1 : 0;
+         return IS_NULL(p->fp) ? 1 : 0;
       }
 
       else {                                     /* regular file */
          p->fp = fopen((const char *) x, "rb");
-         return _IS_NULL(p->fp) ? 1 : 0;
+         return IS_NULL(p->fp) ? 1 : 0;
       }
    }
 }
@@ -90,10 +90,10 @@ cstrm_close(struct cstrm **pp)
    if ((*pp)->is_str)
       cbuf_free(&((*pp)->cp));
 
-   else
-      _IS_NULL((*pp)->fp) || fclose((*pp)->fp);
+   else if (!IS_NULL((*pp)->fp))
+      fclose((*pp)->fp);
 
-   _FREE(*pp);
+   FREE(*pp);
    *pp = NULL;
 }
 
@@ -121,5 +121,5 @@ cstrm_ungetc(struct cstrm *p, const int c)
       return ungetc(c, p->fp);
 }
 
-#undef _IS_NULL
-#undef _FREE
+#undef IS_NULL
+#undef FREE
